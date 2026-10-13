@@ -187,20 +187,58 @@
 
 \section{Commits}
 \label{sec:commits}
-    Commits are groups of changes to the repository, and lie in a timeline. Using a sequence of commits, it is possible for Git to construct the repo while itself taking up minimal storage. A commit is always accompanied by a commit message and is always tagged with a unique identifier.
+    Commits represent snapshots of the repository, and each commit keeps a reference to its predecessor(s). Using a sequence of commits, it is possible for Git to construct the repo. A commit is always accompanied by a commit message and is always tagged with a unique identifier.
 
     \subsection{Writing good commit messages}
     \label{subsec:commit_messages}
-        Writing good commit messages are somewhat of an art form. Their most important purposes are to speed up the reviewing process, help others write good release notes, and to help future maintainers understand why certain changes were made \cite{hogberg_writing_2023}. In short, the commit message should
-        \begin{itemize}
-            \item lead with a summary of maximum 50 characters,
-            \item have the second line left blank, and
-            \item contain a more detailed description outlining why the changes were done.
-        \end{itemize}
+        Writing good commit messages is somewhat of an art form. Their most important purposes are to speed up the reviewing process, help others write good release notes, and to help future maintainers understand why certain changes were made \cite{hogberg_writing_2023}. Conventional Commits 1.0.0 \cite{noauthor_conventional_nodate} provides a good specification for how commit messages should be formatted, and commit messages in Thalassa should follow Conventional Commits 1.0.0. While compliance is not automatically enforced through any systems, contributors are expected to follow the specification.
+
+        Conventional Commits 1.0.0 states that commit messages should be structured as follows, with a short explanation of the elements below. Readers are encouraged to study the specification on \textcite{noauthor_conventional_nodate}.
+
+        \begin{verbatim}
+            <type>[optional scope]: <description>
+
+            [optional body]
+
+            [optional footer(s)]
+        \end{verbatim}
+
+        % Please add the following required packages to your document preamble:
+        \begin{table}[H]
+        \centering
+        \begin{tabularx}{\linewidth}{l|>{\raggedright\arraybackslash}X}
+        \textbf{Element} & \textbf{Explanation}                                                                                                                         \\ \hline
+        type             & The kind of change, e.g. \verb|feat| or \verb|fix|.                                                                                          \\ \hline
+        scope            & Optional indication of which system is affected, e.g. renderer, asset manager.  If a scope is included, it should be encased in parentheses. \\ \hline
+        description      & A short summary of the change.                                                                                                               \\ \hline
+        body             & Optional additional context, describing what changed and why.                                                                                \\ \hline
+        footer           & Optional metadata, such as references to issues or breaking changes.                                                                        
+        \end{tabularx}
+        \end{table}
+
+        \subsubsection{Example commit messages}
+            Below, some example commit messages are shown to contextualize section \ref{subsec:commit_messages}.
+            
+            \verb|feat(renderer): add support for textured meshes| \vspace{2mm}
+            
+            \verb|fix(physics): correct collision response on slopes| \vspace{2mm}
+            
+            \verb|docs: update Git workflow documentation| \vspace{2mm}
+            
+            \begin{verbatim}
+    fix(renderer): correct image layout transition
+    
+    Transition sampled images to the appropriate layout
+    before they are accessed by shaders.
+    
+    This fixes validation errors occurring during rendering.
+            \end{verbatim}
 
     \subsection{Sizing a commit}
     \label{subsec:commit_sizes}
-        It is easy to get carried away, dumping all changes in one large commit. Doing this is not recommended, however. With large commits it becomes hard to backtrack parts of changes and pinpointing sources of bugs. It is instead recommended to group similar changes under separate commits. A good rule of thumb is that if it is hard to summarize a commit, you want to rethink the size and split the changes into several commits.
+        It is easy to get carried away, dumping all changes in one large commit. Doing this is not recommended, however. With large commits, it becomes hard to review changes, pinpoint sources of bugs, and revert breaking changes. Instead, commits should represent logically self-contained changes. A commit should not be unnecessarily small, either. Many small commits that together implement or modify one feature may be better suited in one commit, even if they affect multiple files.
+        
+        A good rule of thumb is that if it is hard to summarize a commit, you want to rethink the size and split the changes into several commits.
 
 \section{Branch management}
 \label{sec:branch_management}
