@@ -167,6 +167,8 @@
             \item If you see changes that should be done, you may add comments on the entire file on the right-hand side, or on a specific line by clicking the plus icon when hovering over it.
             \item When satisfied, click the green button in the top right and select the option that applies. Note that "Approve" means that comments can be ignored and only should be used if things look good to merge.
         \end{enumerate}
+
+        
     
         When a PR is fully approved, anyone is able to merge the changes into the base branch, finalising the merge. All branches that are not \terminalfont{main} and \terminalfont{dev} should be deleted once merged, see section \ref{subsec:gitflow_branches}.
     
@@ -246,13 +248,18 @@
 
     \subsection{Switching branches}
     \label{subsec:branch_switch}
-        You can always "checkout" a branch. Checking out a branch simply means to switch which branch is present on your machine. To make the switching process easy, it is best to not have any uncommitted changes present (see section \ref{sec:commits}), though it is possible to "stash" changes. You will be prompted to do this, so there is no worry with losing work.
+        You can always "check out" a branch. Checking out a branch simply means switching which branch is present on your machine. To make the switching process easy, it is best to not have any uncommitted changes present (see section \ref{sec:commits}), though it is possible to "stash" changes. You will be prompted to do this, so there is no worry about losing work.
 
     \subsection{Rebasing branches}
     \label{subsec:branch_rebase}
-        Since Git works with a timeline, this timeline might get jumbled if changes has been done on a branch you intend to merge yours into. Say you created a feature branch from \terminalfont{dev} when commit 15 was the most recent one. When you are finished with your feature, \terminalfont{dev} might now be on commit 20, and the branches have "diverged". In some cases, Git can automatically merge changes together, but sometimes it cannot discern which changes should be kept or discarded, at which point you get a merge conflict. To avoid issues, it is recommended to "rebase" your branch. Rebasing a branch means taking all changes made in the branch and attempting to apply them with a different commit as the base. Most of the time, a rebase will create a linear timeline. How you perform rebases vary depending on your client of choice.
-        \textbf{Always} attempt to perform a rebase of your branch before creating a pull request.
-        \todo[inline]{Add section about merge conflicts and refer to it here.}
+        Since Git works with a timeline, this timeline might get jumbled if changes have been made on a branch you intend to merge yours into. Say you created a feature branch from \terminalfont{dev} when commit 15 was the most recent one. When you are finished with your feature, \terminalfont{dev} might now be on commit 20, and the branches have "diverged". In some cases, Git can automatically merge changes together, but sometimes it cannot discern which changes should be kept or discarded, at which point you get a merge conflict. To avoid issues, it is recommended to "rebase" your branch. Rebasing a branch means taking all changes made in the branch and attempting to apply them with a different commit as the base. Most of the time, a rebase will create a linear timeline. How you perform rebases varies depending on your client of choice.
+
+        In Thalassa, developers are \textbf{not} expected to rebase their changes before creating pull requests.
+
+    \subsection{Merging branches}
+    \label{subsec:branch_merge}
+        Merging branches is another way of dealing with the scenario described in section \ref{subsec:branch_rebase}. The key difference between rebasing and merging is that, with merging, you take the \verb|head|s of two branches and combine the two snapshots of the repository, effectively merging two timelines into one. The terminology states that you merge branch A \textit{into} branch B, and a \verb|merge commit| is created to perform this merge. Unlike rebases, merges do not create a linear timeline, and keep the timeline "true" to how the repository has developed. This is not always preferable and depends on the project. How you perform merges varies depending on your client.
+        
 
 % All references are stored in a separate bib-file: ass-refs.bib
 \small
