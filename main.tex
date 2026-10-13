@@ -133,6 +133,19 @@
         
         \subsubsection{Hotfix branches}
             Hotfix branches should be extremely rare. Their sole purpose is to fix urgent, project-breaking bugs. Like most branches, they live only for the duration needed to implement the changes they are meant for. Hotfix branches always originate from \verb|main|, and should always be merged into \textbf{both} \verb|main| and \verb|dev|. Hotfix branches are always named \verb|hotfix/<name-of-hotfix>|.
+
+    \subsection{Workflow in Project Thalassa and Droplet}
+    \label{subsec:workflow}
+        For Project Thalassa and Droplet, the workflow for a branch (branch A) that is ready to start the process of being merged into another branch (branch B) is as follows:
+        \begin{enumerate}
+            \item Ensure that branch A at least has the latest changes from the remote copy.
+            \item Ensure that the local copy of branch B is up to date, \textbf{or} ensure that you will be referencing the remote copy.
+            \item Using your client of choice, merge branch B into branch A. This allows you to handle merge conflicts locally.
+            \item Handle any merge conflicts and push your changes to the remote.
+            \item Verify that branch A builds and runs correctly after the merge.
+            \item Create a pull request to merge the now up-to-date branch A into branch B.
+            \item If branch A has served its purpose, delete it once merged.
+        \end{enumerate}
     
 \section{Pull requests and you}
 \label{sec:pr}
