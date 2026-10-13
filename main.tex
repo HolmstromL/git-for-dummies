@@ -96,7 +96,7 @@
 \label{sec:git}
     Simply put, Git is a version control system. By using "commits", it tracks changes to the project ("repository"), and a sequence of commits describes how a project's files have changed over time. A git repository contains one or more branches. A branch represents a line of development, allowing developers to work on separate changes without interfering with each other. The default branch is commonly called \verb|main|.
     
-    The most basic way git works is via branches, as mentioned above, and commits. Commits are collections of changes to the files and file structure of the repository. Commits can only contain changes to files, and will not include empty directories. To create a commit, you must first \textbf{stage} changes, which then are grouped with a commit message. You can create several commits on your local system before \textbf{pushing} changes in your local repository to the remote (the repository stored on GitHub). How staging works varies depending on the software used to interact with Git. To ensure clarity, commit messages must communicate clearly what changed. Read more about commits in section \ref{sec:commits}.
+    The most basic way git works is via branches, as mentioned above, and commits. Commits are collections of changes to the files and file structure of the repository. Commits can only contain changes to files, and will not include empty directories. To create a commit, you must first \textbf{stage} changes, which are then grouped with a commit message. You can create several commits on your local system before \textbf{pushing} changes in your local repository to the remote (the repository stored on GitHub). How staging works varies depending on the software used to interact with Git. To ensure clarity, commit messages must communicate clearly what changed. Read more about commits in section \ref{sec:commits}.
     
     One important distinction to make is that Git is a system. In turn, we are using GitHub, which is a repository host. Later, in section \ref{sec:pr}, we will explore pull requests. Pull requests are a feature not inherently present in Git, and exist because of our choice of repository host. There are several more such features not covered in this document.
 
@@ -111,16 +111,16 @@
         \item Release branches
     \end{itemize}
     
-    Any changes should always be done on at least a feature branch, \textbf{not} on \verb|main} or \verb|dev|. Feature branches and other types are explained below.
+    Any changes should always be done on at least a feature branch, \textbf{not} on \verb|main| or \verb|dev|. Feature branches and other types are explained below.
 
     \subsection{Branches in Gitflow}
     \label{subsec:gitflow_branches}
         
         \subsubsection{The main branch}
-            The main branch, not surprisingly named \verb|main|, is \textbf{the} branch, at least in our case. In the case of Project Thalassa, \verb|main| acts as the release branch, always containing a buildable, runnable version of the project. Making changes to \verb|main| should be done sparingly and cautiously, ensuring that a change to the branch is thoroughly tested to avoid major issues. Changes to \verb|main| always originate from a release branch, except for the rare case of hotfixes.
+            The main branch, not surprisingly named \verb|main|, is \textbf{the} branch, at least in our case. In the case of Project Thalassa and Droplet, \verb|main| acts as the release branch, always containing a buildable, runnable version of the project. Making changes to \verb|main| should be done sparingly and cautiously, ensuring that a change to the branch is thoroughly tested to avoid major issues. Changes to \verb|main| always originate from a release branch, except for the rare case of hotfixes.
         
         \subsubsection{The development branch}
-            The development branch, \verb|dev|, contains the most recent version of the project with finished features. The development branch must always build and run, but, unlike main, it is acceptable for bugs and unfinished features to be present on \verb|dev|. Changes to \verb|dev| always originate from feature, bugfix or release branches.
+            The development branch, \verb|dev|, contains the most recent version of the project with finished features. The development branch must always build and run, but, unlike main, it is acceptable for bugs and unfinished features to be present on \verb|dev|. Changes to \verb|dev| always originate from feature, bugfix, or release branches.
         
         \subsubsection{Feature branches}
             Feature branches are temporary branches, with a lifetime limited to the time needed to implement the feature they are intended for. Feature branches are always used for new functionality in the project. Once a feature is merged into the \verb|dev| branch, its corresponding feature branch should be deleted. Names of feature branches are always \verb|feature/<name-of-feature>|, and are always based on the latest \verb|dev| commit.
@@ -164,13 +164,13 @@
             \item Read the title and description for any necessary context.
             \item Click on "Files changed".
             \item Study the changes made. For ease, you may mark files as viewed on the right-hand side.
-            \item If you see changes that should be done, you may add comments on the entire file on the right-hand side, or on a specific line by clicking the plus icon when hovering over it.
-            \item When satisfied, click the green button in the top right and select the option that applies. Note that "Approve" means that comments can be ignored and only should be used if things look good to merge.
+            \item If you see changes that should be made, you may add comments on the entire file on the right-hand side, or on a specific line by clicking the plus icon when hovering over it.
+            \item When satisfied, click the green button in the top right and select the option that applies. Note that "Approve" means that comments can be ignored and should only be used if things look good to merge.
         \end{enumerate}
 
         
     
-        When a PR is fully approved, anyone is able to merge the changes into the base branch, finalising the merge. All branches that are not \verb|main| and \verb|dev| should be deleted once merged, see section \ref{subsec:gitflow_branches}.
+        When a PR is fully approved, anyone is able to merge the changes into the base branch, finalising the merge. All branches that are not \verb|main| and \verb|dev| should be deleted once merged; see section \ref{subsec:gitflow_branches}.
     
         \subsubsection{Review checklist}
             When reviewing a PR, consider the following:
@@ -184,7 +184,7 @@
             \end{itemize}
     
         \subsubsection{Testing a pull request}
-            Pull requests must always be \textbf{tested} unless obviously unnecessary, e.g. if documentation has changed. This can be done by pressing "Code" in the top right of the pull request page and using the option that applies ("Checkout with GitHub Desktop" or "Checkout with GitHub CLI"). Once checked out, ensure functionality and that the project compiles and runs. When doing this, you will be "checking out" a version of the project, which means that your changes must be saved and that you then must return to your branch. See section \ref{subsec:branch_switch} for more details.
+            Pull requests must always be \textbf{tested} unless obviously unnecessary, e.g., if documentation has changed. This can be done by pressing "Code" in the top right of the pull request page and using the option that applies ("Checkout with GitHub Desktop" or "Checkout with GitHub CLI"). Once checked out, ensure functionality and that the project compiles and runs. When doing this, you will be "checking out" a version of the project, which means that your changes must be saved and that you then must return to your branch. See section \ref{subsec:branch_switch} for more details.
 
 
 \section{Commits}
@@ -193,7 +193,7 @@
 
     \subsection{Writing good commit messages}
     \label{subsec:commit_messages}
-        Writing good commit messages is somewhat of an art form. Their most important purposes are to speed up the reviewing process, help others write good release notes, and to help future maintainers understand why certain changes were made \cite{hogberg_writing_2023}. Conventional Commits 1.0.0 \cite{noauthor_conventional_nodate} provides a good specification for how commit messages should be formatted, and commit messages in Thalassa should follow Conventional Commits 1.0.0. While compliance is not automatically enforced through any systems, contributors are expected to follow the specification.
+        Writing good commit messages is somewhat of an art form. Their most important purposes are to speed up the reviewing process, help others write good release notes, and help future maintainers understand why certain changes were made \cite{hogberg_writing_2023}. Conventional Commits 1.0.0 \cite{noauthor_conventional_nodate} provides a good specification for how commit messages should be formatted, and commit messages in Thalassa and Droplet should follow Conventional Commits 1.0.0. While compliance is not automatically enforced through any systems, contributors are expected to follow the specification.
 
         Conventional Commits 1.0.0 states that commit messages should be structured as follows, with a short explanation of the elements below. Readers are encouraged to study the specification on \textcite{noauthor_conventional_nodate}.
 
@@ -212,7 +212,7 @@
         \textbf{Element} & \textbf{Explanation}                                                                                                                         \\ \hline
         type             & The kind of change, e.g. \verb|feat| or \verb|fix|.                                                                                          \\ \hline
         scope            & Optional indication of which system is affected, e.g. renderer, asset manager.  If a scope is included, it should be encased in parentheses. \\ \hline
-        description      & A short summary of the change.                                                                                                               \\ \hline
+        description      & A summary of the change.                                                                                                               \\ \hline
         body             & Optional additional context, describing what changed and why.                                                                                \\ \hline
         footer           & Optional metadata, such as references to issues or breaking changes.                                                                        
         \end{tabularx}
@@ -248,13 +248,13 @@
 
     \subsection{Switching branches}
     \label{subsec:branch_switch}
-        You can always "check out" a branch. Checking out a branch simply means switching which branch is present on your machine. To make the switching process easy, it is best to not have any uncommitted changes present (see section \ref{sec:commits}), though it is possible to "stash" changes. You will be prompted to do this, so there is no worry about losing work.
+        You can always "check out" a branch. Checking out a branch simply means switching which branch is present on your machine. To make the switching process easy, it is best not to have any uncommitted changes present (see section \ref{sec:commits}), though it is possible to "stash" changes. You will be prompted to do this, so there is no worry about losing work.
 
     \subsection{Rebasing branches}
     \label{subsec:branch_rebase}
-        Since Git works with a timeline, this timeline might get jumbled if changes have been made on a branch you intend to merge yours into. Say you created a feature branch from \verb|dev| when commit 15 was the most recent one. When you are finished with your feature, \verb|dev| might now be on commit 20, and the branches have "diverged". In some cases, Git can automatically merge changes together, but sometimes it cannot discern which changes should be kept or discarded, at which point you get a merge conflict. To avoid issues, it is recommended to "rebase" your branch. Rebasing a branch means taking all changes made in the branch and attempting to apply them with a different commit as the base. Most of the time, a rebase will create a linear timeline. How you perform rebases varies depending on your client of choice.
+        Since Git works with a timeline, this timeline might get jumbled if changes have been made on a branch you intend to merge yours into. Say you created a feature branch from \verb|dev| when commit 15 was the most recent one. When you are finished with your feature, \verb|dev| might now be on commit 20, and the branches have "diverged". In some cases, Git can automatically merge changes, but sometimes it can't decide which changes to keep or discard, and you get a merge conflict. To avoid issues, it is recommended to "rebase" your branch. Rebasing a branch means taking all changes made in the branch and attempting to apply them with a different commit as the base. Most of the time, a rebase will create a linear timeline. How you perform rebases varies depending on your client of choice.
 
-        In Thalassa, developers are \textbf{not} expected to rebase their changes before creating pull requests.
+        In Thalassa and Droplet, developers are \textbf{not} expected to rebase their changes before creating pull requests.
 
     \subsection{Merging branches}
     \label{subsec:branch_merge}
