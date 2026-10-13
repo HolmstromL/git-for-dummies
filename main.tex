@@ -165,7 +165,7 @@
         
         Once the PR is created, you can either ask others to check it out and approve it, or you can assign others to it directly.
     
-        Before creating a pull request, you should try to rebase your branch onto the branch you are trying to change. See section \ref{subsec:branch_rebase} for details on rebasing.
+        Before creating a pull request, you should merge the destination branch into your branch. See section \ref{subsec:branch_merge} for details on merging, and section \ref{subsec:workflow} for details on the process of merging.
         
     \subsection{Reviewing a pull request}
         Pull requests must be approved by other collaborators before it is possible to merge the changes.
@@ -271,7 +271,7 @@
 
     \subsection{Merging branches}
     \label{subsec:branch_merge}
-        Merging branches is another way of dealing with the scenario described in section \ref{subsec:branch_rebase}. The key difference between rebasing and merging is that, with merging, you take the \verb|head|s of two branches and combine the two snapshots of the repository, effectively merging two timelines into one. The terminology states that you merge branch A \textit{into} branch B, and a \verb|merge commit| is created to perform this merge. Unlike rebases, merges do not create a linear timeline, and keep the timeline "true" to how the repository has developed. This is not always preferable and depends on the project. How you perform merges varies depending on your client.
+        Merging branches is another way of dealing with the scenario described in section \ref{subsec:branch_rebase}. The key difference between rebasing and merging is that, with merging, you take the \verb|head|s of two branches and combine the two snapshots of the repository, effectively merging two timelines into one. When merging branch A into branch B, git combines their histories. If the branches have diverged, git normally creates a merge commit, which contains the combined result. Otherwise, git performs a fast-forward merge, which does not create a merge commit. Unlike rebasing, merging preserves the existing commit history, and in the case of a merge commit, the history becomes non-linear and reflects the actual development history. This is not always preferable and depends on the project. How you perform merges varies depending on your client.
         
 
 % All references are stored in a separate bib-file: ass-refs.bib
