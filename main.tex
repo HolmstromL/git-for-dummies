@@ -1,67 +1,25 @@
-% Document template originally from DIPT at Blekinge Institute of Technology
-% 
-%
 \documentclass[12pt,a4paper]{article}
-%
-% Set a flag to include or exclude the blue comment boxes.
+
+% Todo notes
 \usepackage{etoolbox}
 \newtoggle{todos}
 \toggletrue{todos}
 \togglefalse{todos}
-%
-\include{preamble}  % Contains commands that we pushed to a separate file.
 
-% Please identify COURSE CODE and COURSE NAME.
-\newcommand{\theCourse}{Linus Holmström}
+\include{preamble}
 
-% Please identify ASSIGNMENT NAME.
-\newcommand{\theAssignment}{Git For Dummies - Version 1.0.1}
 
-% *** Do not touch the following lines. BEGIN. ***
-\title{\theAssignment\\\vspace{1mm}}
-\author{\textsc{\theCourse}}
+\title{Git For Dummies - Version 1.0.1\\\vspace{1mm}}
+\author{\textsc{Linus Holmström}}
 \date{\today}
-%
+
 \begin{document}
 
-%
+
 \maketitle
-%
+
 \vspace*{-12mm}
-% *** END. Do not touch the lines above. ***
 
-% *** BELOW YOU INSERT BASIC INFORMATION ABOUT THE ASSIGNMENT ***
-% \begin{longtable}{|l|p{12.15cm}|}
-% \hline
-% Group name/ID & Group name or ID, in case this is a group exercise \\ 
-% \hline
-% Title         & Title of the answer/ solution \\
-% \hline
-% Supervisor(s) & Supervisor name(s), if applicable \\
-% \hline
-% \end{longtable}
-
-
-% % *** BELOW YOU INSERT DETAILS ABOUT WHO DID WHAT ***
-% \vspace*{4mm}
-% \begin{small}
-% \begin{longtable}{|l|l|p{10.9cm}|}
-% \hline
-% \multirow{4}{*}{\vspace{4mm}Student 1}
-%  & Name           & Full name as given in Ladok \\ \cline{2-3}
-%  & E-Mail         & ...@student.bth.se \\ \cline{2-3}
-%  & Program        & Program you are registered in \\ \cline{2-3}
-% \hline
-% % \multirow{4}{*}{Student 2}
-% %  & Name           &  \\ \cline{2-3}
-% %  & E-Mail         &  \\ \cline{2-3}
-% %  & Program        &  \\ \cline{2-3}
-% %  & Contribution   &  \\
-% % \hline
-% \end{longtable}
-% \end{small}
-
-% *** BELOW YOU MAINTAIN THE DOCUMENT HISTORY ***
 \begin{small}
 \begin{longtable}{|p{13.3cm}|}
 \hline
@@ -82,13 +40,12 @@
 
 \setcounter{table}{0}  % The tables on the front page shouldn't be counted
 
-% When you need a table of contents, you can uncomment the following line(s)
-\setcounter{tocdepth}{3}  % Sets the level of sections/subsections for the table of contents
+
+\setcounter{tocdepth}{3}
 \tableofcontents
 
 \newpage
 
-% *** THE ACTUAL ASSIGNMENT CONTENT STARTS HERE ***
 \section{Preface}
     In this document, some features of Git and Gitflow, as well as ways to work with them, are explained. While some aspects are true in general scenarios, some aspects may be explained as true despite them only being so for this specific project. Before applying certain ways of working outside of this project, ensure that they are correct for your specific use case.
 
@@ -274,9 +231,7 @@
         Merging branches is another way of dealing with the scenario described in section \ref{subsec:branch_rebase}. The key difference between rebasing and merging is that, with merging, you take the \verb|head|s of two branches and combine the two snapshots of the repository, effectively merging two timelines into one. When merging branch A into branch B, git combines their histories. If the branches have diverged, git normally creates a merge commit, which contains the combined result. Otherwise, git performs a fast-forward merge, which does not create a merge commit. Unlike rebasing, merging preserves the existing commit history, and in the case of a merge commit, the history becomes non-linear and reflects the actual development history. This is not always preferable and depends on the project. How you perform merges varies depending on your client.
         
 
-% All references are stored in a separate bib-file: ass-refs.bib
 \small
 \printbibliography
-\todo[inline]{Add more sources.}
 
 \end{document}
