@@ -41,7 +41,7 @@
 \setcounter{table}{0}  % The tables on the front page shouldn't be counted
 
 
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 \tableofcontents
 
 \newpage
@@ -241,9 +241,13 @@
 
     \subsection{Rebasing branches}
     \label{subsec:branch_rebase}
-        Since Git works with a timeline, this timeline might get jumbled if changes have been made on a branch you intend to merge yours into. Say you created a feature branch from \verb|dev| when commit 15 was the most recent one. When you are finished with your feature, \verb|dev| might now be on commit 20, and the branches have "diverged". In some cases, Git can automatically merge changes, but sometimes it can't decide which changes to keep or discard, and you get a merge conflict. One way to avoid such issues is "rebasing" your branch. Rebasing a branch means taking all changes made in the branch and attempting to apply them with a different commit as the base. Most of the time, a rebase will create a linear timeline. How you perform rebases varies depending on your client of choice.
+        Since Git works with a timeline, this timeline might get jumbled if changes have been made on a branch you intend to merge yours into. Say you created a feature branch from \verb|dev| when commit 15 was the most recent one. When you are finished with your feature, \verb|dev| might now be on commit 20, and the branches have "diverged".
 
-        In Thalassa and Droplet, developers are \textbf{not} expected to rebase their changes before creating pull requests.
+        Rebasing is one way to incorporate changes from another branch. When rebasing your branch on another, Git takes the commits made on your branch and reapplies them after the latest commit made on the other branch. The result of this operation is a linear history, as if your changes originally had been made on the other branch.
+
+        However, rebasing rewrites the commit history by creating new commits, and conflicts may arise where there were none originally. Rebasing branches that others are working on can cause problems and is discouraged. Additionally, since the history is rewritten, your local copy will differ from a remote one after a rebase has been performed. If the rebased branch has previously been pushed to a remote, updating the remote copy of the branch may require a forced push. This should be done with great care, preferably using \verb|--force-with-lease|, as rewriting a shared branch history may interfere with other contributors' work.
+        
+        In Thalassa and Droplet, developers are \textbf{not} expected to rebase their changes before creating pull requests. Instead, follow the workflow described in section \ref{subsec:workflow}.
 
     \subsection{Merging branches}
     \label{subsec:branch_merge}
