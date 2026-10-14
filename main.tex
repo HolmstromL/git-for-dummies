@@ -137,7 +137,6 @@
             \item If you see changes that should be made, you may add comments on the entire file on the right-hand side, or on a specific line by clicking the plus icon when hovering over it.
             \item When satisfied, click the green button in the top right and select the option that applies. Note that "Approve" means that no changes are expected or suggested, and should only be used if things look good to merge.
         \end{enumerate}
-
         
     
         When a PR is fully approved, anyone is able to merge the changes into the base branch, finalising the merge. All branches that are not \verb|main| and \verb|dev| should be deleted once merged; see section \ref{subsec:gitflow_branches}.
@@ -156,6 +155,26 @@
         \subsubsection{Testing a pull request}
             Pull requests must always be \textbf{tested} unless obviously unnecessary, e.g., if documentation has changed. This can be done by pressing "Code" in the top right of the pull request page and using the option that applies ("Checkout with GitHub Desktop" or "Checkout with GitHub CLI"). Once checked out, ensure functionality and that the project compiles and runs. When doing this, you will be "checking out" a version of the project, which means that your changes must be saved and that you then must return to your branch. See section \ref{subsec:branch_switch} for more details.
 
+    \subsection{Pull request feedback}
+    \label{subsec:pr_feedback}
+        The purpose of a pull request review is to identify potential problems with the code and increase code quality, and all parties involved must remember that the goal is a solid code base.
+        
+        \subsubsection{Review etiquette}
+            Feedback on pull requests requires some level of mutual respect. Reviewers must remember that there is a person on the other side of the review and be open to being wrong. Those whose code is being reviewed must be humble, be receptive to constructive criticism, and be comfortable questioning suggestions.
+
+        \subsubsection{Leaving comments}
+            Comments on minor issues are welcome, as they can improve readability, consistency, and maintainability. However, reviewers should distinguish clearly between issues that must be addressed and optional suggestions. Comments should communicate clearly if a comment refers to something the author expects a change to, if the comment is a legitimate question, or if the comment is left for documentation purposes.
+
+            Generally, reviewers should leave suggestions on \textbf{how} the code should be changed, to avoid situations where reviewees feel that they do not know how to change the code to accommodate the comments. However, not proposing a solution is also acceptable, though it should be communicated clearly why this is the case.
+
+        \subsubsection{Responding to comments}
+            Text-based communication is a poor replacement for face-to-face conversation, though it is good for maintaining documentation of what has been said. The reviewer and reviewee are encouraged to discuss disagreements in person, though a summary of an eventual agreement should be left as a response to the comment. Every substantive comment should receive some form of acknowledgement or resolution, to show that the reviewee has considered the comments properly.
+
+        \subsubsection{Making changes based on comments}
+            The reviewee is always responsible for updating the code, unless otherwise agreed. This ensures that the author of the pull request remains responsible for the implementation and its correctness, while allowing reviewers to focus on actual issues and suggesting improvements.
+
+        \subsubsection{Resolving review comments}
+            Resolving a comment means that the concern originally raised in the comment has been resolved, either via a change or via a response. A comment should only be resolved by the one who wrote the comment, unless the conversation has obviously concluded through a mutual agreement. If a substantial change was made after a comment, apart from the author testing their code, the reviewer should get the opportunity to examine the updated code before the pull request is merged.
 
 \section{Commits}
 \label{sec:commits}
@@ -218,11 +237,11 @@
 
     \subsection{Switching branches}
     \label{subsec:branch_switch}
-        You can always "check out" a branch. Checking out a branch simply means switching which branch is present on your machine. To make the switching process easy, it is best not to have any uncommitted changes present (see section \ref{sec:commits}), though it is possible to "stash" changes. You will be prompted to do this, so there is no worry about losing work.
+        You can always "check out" a branch. Checking out a branch simply means switching which branch is present on your machine. To make the switching process easy, it is best not to have any uncommitted changes present (see section \ref{sec:commits}), though it is possible to "stash" changes. How you stash changes depends on your client.
 
     \subsection{Rebasing branches}
     \label{subsec:branch_rebase}
-        Since Git works with a timeline, this timeline might get jumbled if changes have been made on a branch you intend to merge yours into. Say you created a feature branch from \verb|dev| when commit 15 was the most recent one. When you are finished with your feature, \verb|dev| might now be on commit 20, and the branches have "diverged". In some cases, Git can automatically merge changes, but sometimes it can't decide which changes to keep or discard, and you get a merge conflict. To avoid issues, it is recommended to "rebase" your branch. Rebasing a branch means taking all changes made in the branch and attempting to apply them with a different commit as the base. Most of the time, a rebase will create a linear timeline. How you perform rebases varies depending on your client of choice.
+        Since Git works with a timeline, this timeline might get jumbled if changes have been made on a branch you intend to merge yours into. Say you created a feature branch from \verb|dev| when commit 15 was the most recent one. When you are finished with your feature, \verb|dev| might now be on commit 20, and the branches have "diverged". In some cases, Git can automatically merge changes, but sometimes it can't decide which changes to keep or discard, and you get a merge conflict. One way to avoid such issues is "rebasing" your branch. Rebasing a branch means taking all changes made in the branch and attempting to apply them with a different commit as the base. Most of the time, a rebase will create a linear timeline. How you perform rebases varies depending on your client of choice.
 
         In Thalassa and Droplet, developers are \textbf{not} expected to rebase their changes before creating pull requests.
 
